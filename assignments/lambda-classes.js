@@ -31,7 +31,6 @@ class Person {
     this.name = attr.name;
     this.location = attr.location;
     this.age = attr.name;
-    this.subject = attr.subject;
   } //method goes here
   speak() {
     return `Hello my name is ${this.name}, I am from ${this.location}`;
@@ -42,7 +41,7 @@ const lambdaPerson = new Person({
   name: "Fred",
   age: 25,
   location: "Australia",
-  subject: ["Python", "Java", "Node.js"]
+//   subject: ["Python", "Java", "Node.js"]
 });
 
 console.log(lambdaPerson.speak());
@@ -67,11 +66,11 @@ class Instructor extends Person {
     this.catchPhrase = instructorAttr.catchPhrase;
   } //methods goes here
   demo(subject) {
-    return `Today we are learning about ${this.subject}`;
+    return `Today we are learning about ${subject}`;
   } //this closes first method
 
   grade(student, subject) {
-    return `${this.name} receives a perfect score on ${this.subject}`;
+    return `${student.name} receives a perfect score on ${subject}`;
   } //this closes second method
 }
 
@@ -81,7 +80,9 @@ const lambdaInstructor = new Instructor({
   catchPhrase: `Don't forget the homies`
 });
 
-console.log(lambdaInstructor.demo([1]));
+console.log(lambdaInstructor.demo('Computer Science'));
+console.log(lambdaInstructor.grade('Emma' 'Computer Science' ))
+
 
 // #### Student
 
