@@ -40,8 +40,7 @@ class Person {
 const lambdaPerson = new Person({
   name: "Fred",
   age: 25,
-  location: "Australia",
-//   subject: ["Python", "Java", "Node.js"]
+  location: "Australia"
 });
 
 console.log(lambdaPerson.speak());
@@ -75,14 +74,16 @@ class Instructor extends Person {
 }
 
 const lambdaInstructor = new Instructor({
+  name: "Chris",
+  age: 37,
+  location: "Germany",
   specialty: "redux",
   favLanguage: "JavaScript, Python, Elm",
   catchPhrase: `Don't forget the homies`
 });
 
-console.log(lambdaInstructor.demo('Computer Science'));
-console.log(lambdaInstructor.grade('Emma' 'Computer Science' ))
-
+console.log(lambdaInstructor.demo("Computer Science"));
+console.log(lambdaInstructor.grade(lambdaPerson, "Computer Science"));
 
 // #### Student
 
@@ -105,22 +106,30 @@ class Student extends Person {
     this.favSubjects = studentAttr.favSubjects;
   } //methods goes here
   listSubjects() {
-    return `${this.subject}`;
+    return `${this.favSubjects}`;
   } //this closes first method
 
-  PRAssignment() {
-    return `${this.name} has submitted a PR for ${this.subject}`;
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
   }
 }
 
 const lambdaStudent = new Student({
+  name: "Aisha",
+  age: 25,
+  location: "China",
   previousBackground: "Astronaut",
   className: "CS132",
   favSubjects: ["Html", "CSS", "JavaScript"]
 });
 
 console.log(lambdaStudent.listSubjects());
-console.log(lambdaStudent.PRAssignment());
+console.log(lambdaStudent.PRAssignment("Computer Science"));
+console.log(lambdaStudent.sprintChallenge("Computer Science"));
 // #### Project Manager
 
 // * Now that we have instructors and students, we'd be nowhere without our PM's
@@ -133,23 +142,27 @@ console.log(lambdaStudent.PRAssignment());
 //   * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
 
 class ProjectManager extends Instructor {
-  constructor(prAttr) {
-    super(prAttr);
-    this.gradClassName = prAttr.gradClassName;
-    this.favInstructor = prAttr.favInstructor;
+  constructor(pmAttr) {
+    super(pmAttr);
+    this.gradClassName = pmAttr.gradClassName;
+    this.favInstructor = pmAttr.favInstructor;
   } //methods goes here
-  standup() {
+  standup(channel) {
     return `${this.name} announces to ${channel}, @channel standy times!​​​​​`;
   } //this closes first method
 
-  debugsCode() {
-    `${name} debugs ${student.name}'s code on ${subject}`;
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name} 's code on ${subject}`;
   } //this closes second method
 }
 
 const lambdaPM = new ProjectManager({
+  name: "Sofia",
+  age: 40,
+  location: "USA",
   gradClassName: "CS1",
   favInstructor: "Sean"
 });
 
-console.log(lambdaPM.standup());
+console.log(lambdaPM.standup("Slack"));
+console.log(lambdaPM.debugsCode(lambdaStudent, "Computer Science"));
